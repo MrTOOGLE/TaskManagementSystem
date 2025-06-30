@@ -10,13 +10,13 @@ import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByPriorityTrue(Sort sort);
-    List<Task> findByPriorityFalse();
+    List<Task> findByPriorityFalse(Sort sort);
     List<Task> findByStatus(Status status);
     List<Task> findByDateBetween(LocalDateTime start, LocalDateTime end);
     List<Task> findByDescriptionContaining(String description);
     List<Task> findByDateBetweenAndStatus(LocalDateTime start, LocalDateTime end, Status status);
     List<Task> findByTitleContaining(String title);
-    List<Task> findByPriorityTrueAndStatus(Status status);
+    List<Task> findByPriorityAndStatus(Boolean priority, Status status);
     List<Task> findByDateBefore(LocalDateTime date);
     List<Task> findByDateAfter(LocalDateTime date);
 }
