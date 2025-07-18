@@ -3,6 +3,7 @@ package com.example.taskmanagementsystem.service;
 import com.example.taskmanagementsystem.entity.Status;
 import com.example.taskmanagementsystem.entity.Task;
 import com.example.taskmanagementsystem.repository.TaskRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -10,12 +11,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class TaskService{
     private final TaskRepository taskRepository;
-
-    public TaskService(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
-    }
 
     public List<Task> getAllTask() {
         return taskRepository.findAll();
@@ -60,5 +58,4 @@ public class TaskService{
     public List<Task> findByDateAfter(LocalDateTime date) {
         return taskRepository.findByDateAfter(date.toLocalDate().atStartOfDay());
     }
-
 }
