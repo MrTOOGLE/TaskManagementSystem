@@ -2,21 +2,14 @@ package com.example.taskmanagementsystem.repository;
 
 import com.example.taskmanagementsystem.entity.Status;
 import com.example.taskmanagementsystem.entity.Task;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface TaskRepository extends JpaRepository<Task, Long> {
-    List<Task> findByPriorityTrue(Sort sort);
-    List<Task> findByPriorityFalse(Sort sort);
-    List<Task> findByStatus(Status status);
+public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificationExecutor<Task> {
     List<Task> findByDateBetween(LocalDateTime start, LocalDateTime end);
-    List<Task> findByDescriptionContaining(String description);
-    List<Task> findByDateBetweenAndStatus(LocalDateTime start, LocalDateTime end, Status status);
-    List<Task> findByTitleContaining(String title);
-    List<Task> findByPriorityAndStatus(Boolean priority, Status status);
     List<Task> findByDateBefore(LocalDateTime date);
     List<Task> findByDateAfter(LocalDateTime date);
 }
